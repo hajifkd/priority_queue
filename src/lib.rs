@@ -101,4 +101,8 @@ impl<'a, T: Ord, S: Eq + Hash> PriorityQueue<'a, T, S> {
         self.heap[i] = (priority, self.heap[i].1);
         self.heapify(i);
     }
+
+    pub fn get_priority(&self, value: &'a S) -> Option<&T> {
+        self.indices.get(value).map(|&i| &self.heap[i].0)
+    }
 }
